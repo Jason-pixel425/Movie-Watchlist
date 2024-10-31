@@ -15,7 +15,6 @@ html, body {
 header {
     display: flex;
     flex-direction: column;
-    
     width: 100%;
     justify-content: space-between;
     align-items: center;
@@ -37,25 +36,31 @@ header {
 }
 
 .header-container > h1 {
-    margin-left: 2rem;
+    margin: 0 2rem;
+    font-weight: 900;
+    font-size: 2.625rem;
+    
+}
+
+.header-container > nav {
+    margin-top: 0.5em;
 }
 
 .header-container > nav > a {
     margin-right: 2rem;
-}
-
-main {
-    background-color: #121212;
-    height: 100%;
-    width: 100%;
+    font-size: 0.875rem;
+    text-decoration: none;
+    color: #FFF;
+    font-weight: bold;
+    cursor: pointer; 
 }
 
 form {
     display: flex;
     justify-content: center;
     position: relative;
-    top: 15px;
-    width: 100%;  /* Allow the form to grow as wide as the screen */
+    top: 17px;
+    width: 100%;
     max-width: 1000px;
     
 }
@@ -93,4 +98,10 @@ form > button {
     flex-grow: 1;
     flex-basis: auto;
     cursor: pointer;
+}
+
+main {
+    background-color: #121212;
+    height: 100%;
+    width: 100%;
 }
