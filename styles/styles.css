@@ -54,6 +54,14 @@ header {
     cursor: pointer;
 }
 
+.header-container nav a:hover {
+    color: #e5e5e5;
+}
+
+.header-container nav a:active {
+    color: #CCC;
+}
+
 /* Form Styles */
 
 form {
@@ -86,6 +94,14 @@ form button {
     border-radius: 0 6px 6px 0;
     flex: 1 1 auto;
     cursor: pointer;
+}
+
+form button:hover {
+    background-color: #434343;
+}
+
+form button:active {
+    background-color: #3c3c3c;
 }
 
 /* Main Container */
