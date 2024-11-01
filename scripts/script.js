@@ -18,13 +18,17 @@ document.addEventListener('click', async (e) => {
 async function handleSearch () {
     const forms = new FormData(formEl)
     const searchQuery = forms.get('search-query')
+    const numOfResults = Number(forms.get('num-of-results')) ?  Number(forms.get('num-of-results')) : 1;
 
     const response = await fetch(`http://www.omdbapi.com/?s=${searchQuery}&plot=full&apikey=3bcc61`, {
         method: "GET",
     })
      const data = await response.json();
     let movieArr =  []
-     for (let i = 0; i < 3; i++){
+     for (let i = 0; i < numOfResults; i++){
+        if (i === 10){
+            break;
+        }
         movieArr.push(data.Search[i].Title)
      }
      const searchResults = await Promise.all(
