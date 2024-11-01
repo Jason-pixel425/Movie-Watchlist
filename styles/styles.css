@@ -3,7 +3,7 @@ html, body {
     flex-direction: column;
     align-items: center;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     margin: 0;
     padding: 0;
     font-family: 'Inter', serif;
@@ -108,5 +108,18 @@ form button:active {
 
 main {
     background-color: #121212;
-    height: 100%;
+    min-height: 100vh;
+}
+
+.toggle-background {
+    background: #121212 url('./images/Main_image.png') no-repeat center;
+}
+
+section {
+    margin: 1em;
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: 25% 1fr;
+    color: white;
+    width: 100%;
 }
