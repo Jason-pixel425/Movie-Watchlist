@@ -132,8 +132,10 @@ form button:active {
 /* Main Container */
 
 main {
+    display: flex;
     background-color: #121212;
     min-height: 100vh;
+    justify-content: center;
 }
 
 .toggle-background {
@@ -141,16 +143,69 @@ main {
 }
 
 section {
-    margin: 1em;
     display: grid;
-    grid-template-rows: auto;
-    grid-template-columns: 25% 1fr;
+    grid-auto-rows: minmax(max-content, 200px);
+    grid-template-columns: 134px minmax(100px, 833px);
+ 
     color: white;
+    max-width: 75%;
+    margin: 4em auto 0 auto;
+    justify-items: center;
+}
+
+.movie-container, .image-container {
     width: 100%;
 }
 
-.movie-top-container, .movie-middle-container, .movie-bottom-container {
+ .movie-top-container, .movie-middle-container, .movie-bottom-container {
     display: flex;
+    flex-wrap: wrap;
     color: #FFF;
-    
+    width: 100%;
+    align-items: center;
+}
+
+.movie-top-container > p, .movie-middle-container > p, .movie-bottom-container > p{
+    margin: 0.5em;
+}
+
+.movie-top-container > p, .movie-middle-container > p {
+    font-size: 0.75rem;
+}
+
+.movie-bottom-container > p{
+    font-size: 0.875rem;
+    color: #A5A5A5;
+}
+
+.movie-top-container > h2{
+    margin-left: 0.2em;
+    font-weight: 400;
+}
+
+section > .image-container > img {
+        max-width: 100%;
+        max-height: 180px;
+        object-fit: cover;
+        align-self: center;
+        padding: 12.5px 0;
+}
+
+section > .image-container, .movie-container {
+    border-bottom: 1px solid #2c2c2c;
+}
+
+.add-btn{
+    background-color: #121212;
+    border: none;
+    color: #FFF;
+    cursor: pointer;
+}
+
+.add-btn:hover {
+    background-color: #434343;
+}
+
+.add-btn:active {
+    color: #3c3c3c;
 }

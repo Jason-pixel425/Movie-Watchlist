@@ -11,6 +11,7 @@ document.addEventListener('click', async (e) => {
     //console.log('hi')
     if (e.target.value === 'submit'){
         e.preventDefault();
+        mainEl.classList.remove('toggle-background')
         handleSearch();
     }   
 
@@ -43,29 +44,27 @@ async function handleSearch () {
         })
     );
     console.log(searchResults);
-    return searchResults;
-     
-    //  console.log(movieArr)
-
+    renderSearch(searchResults);
 }
 
 function renderSearch(movieArr) {
     let renderString = ''
     renderString += movieArr.map(movie => {
         return `
-            <img src="${movie.Poster}" />
+            <div class="image-container">
+            <img src="${movie.Poster}" alt="${movie.Title} poster" />
+            </div>
             <div class="movie-container">
 
                 <div class="movie-top-container">
                     <h2>${movie.Title}</h2>
-                    <p>⭐</p>
-                    <p>${movie.imdbRating}</p>
+                    <p>⭐${movie.imdbRating}</p>
                 </div>
                     
                 <div class="movie-middle-container">
                     <p>${movie.Runtime}</p>
                     <p>${movie.Genre}</p>
-                    <button><img src="../styles/images/add-icon.png" /> Watchlist</button>
+                    <button class="add-btn" data-imdbID="${movie.imdbId}"><img src="../styles/images/add-icon.png" /> Watchlist</button>
                 </div>
 
                 <div class="movie-bottom-container">
@@ -73,8 +72,6 @@ function renderSearch(movieArr) {
                 </div>
                 
             </div>
-            
-            
         `
     }).join('')
     searchResultsSection.innerHTML = renderString
