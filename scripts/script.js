@@ -1,4 +1,7 @@
 // console.log('I\'m working')
+//Testing data
+import { dummyDataArr } from "./dummyData.js";
+
 const mainEl = document.getElementById('main');
 const searchResultsSection = document.getElementById('search-results-section');
 const formEl = document.getElementById('search-form');
