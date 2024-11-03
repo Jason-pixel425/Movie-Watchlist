@@ -41,7 +41,7 @@ async function handleSearch () {
     const searchQuery = forms.get('search-query')
     const numOfResults = Number(forms.get('num-of-results')) ?  Number(forms.get('num-of-results')) : 1;
     try{
-    const response = await fetch(`http://www.omdbapi.com/?s=${searchQuery}&apikey=3bcc61`, {
+    const response = await fetch(`https://www.omdbapi.com/?s=${searchQuery}&apikey=3bcc61`, {
         method: "GET",
     })
      const data = await response.json();
@@ -55,7 +55,7 @@ async function handleSearch () {
      }
      const searchResults = await Promise.all(
         movieArr.map(async (movieTitle) => {
-            const response = await fetch(`http://www.omdbapi.com/?t=${movieTitle}&apikey=3bcc61`);
+            const response = await fetch(`https://www.omdbapi.com/?t=${movieTitle}&apikey=3bcc61`);
             const data = await response.json();
             return data;
         })
@@ -128,7 +128,7 @@ async function renderWatchlist() {
     } else {
         const movieDataArr = await Promise.all(
             savedMovieArr.map(async (imdbID) => {
-                const response = await fetch(`http://www.omdbapi.com/?i=${imdbID}&apikey=3bcc61`);
+                const response = await fetch(`https://www.omdbapi.com/?i=${imdbID}&apikey=3bcc61`);
                 const data = await response.json();
                 return data;
             })
