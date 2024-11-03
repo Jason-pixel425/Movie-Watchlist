@@ -138,6 +138,19 @@ main {
     justify-content: center;
 }
 
+main > div {
+    text-align: center;
+    color: #787878;
+    
+    font-weight: bold;
+    font-weight: 1.125rem;
+    margin: 10% auto 0 auto;
+}
+
+main > div > a {
+    color: #FFF;
+}
+
 .toggle-background {
     background: #121212 url('./images/Main_image.png') no-repeat center;
 }
@@ -146,7 +159,6 @@ section {
     display: grid;
     grid-auto-rows: minmax(max-content, 200px);
     grid-template-columns: 134px minmax(100px, 833px);
- 
     color: white;
     max-width: 75%;
     margin: 4em auto 0 auto;
