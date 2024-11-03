@@ -7,7 +7,7 @@ const path = window.location.pathname
 let savedMovieArr = JSON.parse(window.localStorage.getItem('movies')) || [];
 
 
-if (path.includes('Watchlist.html')){
+if (path.includes('watchlist')){
     renderWatchlist(); 
  }
 
@@ -18,13 +18,13 @@ document.addEventListener('click', async (e) => {
         e.preventDefault();
         mainEl.classList.remove('toggle-background')
         handleSearch();
-    } else if (!path.includes('Watchlist.html')){
+    } else if (!path.includes('watchlist')){
         if (e.target.dataset && e.target.dataset.imdbid) {
             if(!savedMovieArr.includes(e.target.dataset.imdbid))
             savedMovieArr.push(e.target.dataset.imdbid);
             saveArrayToLocalStorage("movies", savedMovieArr);
         }
-    } else if (path.includes('Watchlist.html')) {
+    } else if (path.includes('watchlist')) {
         if (e.target.dataset && e.target.dataset.imdbid) {
             savedMovieArr = savedMovieArr.filter(imdbid => imdbid != e.target.dataset.imdbid);
             saveArrayToLocalStorage("movies", savedMovieArr)
@@ -83,7 +83,7 @@ function saveArrayToLocalStorage(arrayName, array) {
 //render user search
 function renderSearch(movieArr) {
     let buttonText = ''
-    if (!path.endsWith('Watchlist.html')){
+    if (!path.endsWith('watchlist')){
         buttonText = '<img src="../styles/images/add-icon.png" /> Watchlist';
     } else {
         buttonText = '<img src="../styles/images/remove-icon.png" /> Remove';
