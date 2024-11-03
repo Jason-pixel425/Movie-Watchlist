@@ -1,8 +1,3 @@
-// console.log('I\'m working')
-//Testing data
-import { dummyDataArr } from "./dummyData.js";
-console.log(dummyDataArr)
-
 const mainEl = document.getElementById('main');
 const searchResultsSection = document.getElementById('search-results-section');
 const formEl = document.getElementById('search-form');
@@ -15,7 +10,6 @@ let savedMovieArr = JSON.parse(window.localStorage.getItem('movies')) || [];
 if (path.includes('Watchlist.html')){
     renderWatchlist(); 
  }
- renderSearch(dummyDataArr)
 
 
 
@@ -24,7 +18,7 @@ document.addEventListener('click', async (e) => {
         e.preventDefault();
         mainEl.classList.remove('toggle-background')
         handleSearch();
-    } else if (path.includes('index.html')){
+    } else if (!path.includes('Watchlist.html')){
         if (e.target.dataset && e.target.dataset.imdbid) {
             if(!savedMovieArr.includes(e.target.dataset.imdbid))
             savedMovieArr.push(e.target.dataset.imdbid);
@@ -46,14 +40,15 @@ async function handleSearch () {
     const forms = new FormData(formEl)
     const searchQuery = forms.get('search-query')
     const numOfResults = Number(forms.get('num-of-results')) ?  Number(forms.get('num-of-results')) : 1;
-
+    try{
     const response = await fetch(`http://www.omdbapi.com/?s=${searchQuery}&apikey=3bcc61`, {
         method: "GET",
     })
      const data = await response.json();
+
     let movieArr =  []
      for (let i = 0; i < numOfResults; i++){
-        if (i === 10){
+        if (i === 10 || i === data.Search.length){
             break;
         }
         movieArr.push(data.Search[i].Title)
@@ -64,9 +59,16 @@ async function handleSearch () {
             const data = await response.json();
             return data;
         })
-    );
+  
+    )
     console.log(searchResults);
     renderSearch(searchResults);
+} catch(error){
+        mainEl.innerHTML = `<div>
+        <p>Oops something went wrong...</p>
+        </div>`
+    };
+
 }
 
 //Dealing with local Storage
@@ -81,7 +83,7 @@ function saveArrayToLocalStorage(arrayName, array) {
 //render user search
 function renderSearch(movieArr) {
     let buttonText = ''
-    if (path.endsWith('index.html')){
+    if (!path.endsWith('Watchlist.html')){
         buttonText = '<img src="../styles/images/add-icon.png" /> Watchlist';
     } else {
         buttonText = '<img src="../styles/images/remove-icon.png" /> Remove';
@@ -118,9 +120,11 @@ function renderSearch(movieArr) {
 
 //Render user watchlist
 async function renderWatchlist() {
+    mainEl.classList.remove('toggle-background')
     let savedMovieArr = getArrayFromLocalStorage('movies') || [];
     if (savedMovieArr.length === 0) {
-        searchResultsSection.innerHTML = '<p>Your watchlist is empty.</p>';
+        mainEl.innerHTML = `<div><p>Your watchlist is looking a little empty...</p>
+        <a href='./index.html'><img src="../styles/images/add-icon.png" /> Let's add some movies!</a></div>`;
     } else {
         const movieDataArr = await Promise.all(
             savedMovieArr.map(async (imdbID) => {
