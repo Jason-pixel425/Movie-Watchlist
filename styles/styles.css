@@ -146,7 +146,6 @@ section {
     display: grid;
     grid-auto-rows: minmax(max-content, 200px);
     grid-template-columns: 134px minmax(100px, 833px);
- 
     color: white;
     max-width: 75%;
     margin: 4em auto 0 auto;
